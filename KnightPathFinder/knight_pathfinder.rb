@@ -51,9 +51,27 @@ class KnightPathFinder
 
     end
 
+    def find_path(end_pos)
+        self.build_move_tree if @root_node.children.empty?
+        end_node = @root_node.dfs(end_pos)
+        trace_path_back(end_node)
+    end
+
+    def trace_path_back(end_node)
+        found_path = [end_node.value]
+        current_node = end_node
+        until current_node == @root_node
+            current_node = current_node.parent
+            found_path.unshift(current_node.value)
+        end
+        found_path
+    end
+
     def inspect
         { 'pos' => @root_node.value, "children" => @root_node.children.map { |c| c.inspect }}
     end
 
 end
+
+
 
