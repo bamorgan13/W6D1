@@ -35,7 +35,6 @@ class TicTacToeNode
       end
     else
       self.children.none? do |node|
-        # node.losing_node?(next_mover_mark)
         node.winning_node?(@next_mover_mark)
       end
     end
